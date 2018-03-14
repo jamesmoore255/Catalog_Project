@@ -1,0 +1,275 @@
+/*Fonts
+font-family: 'Roboto', sans-serif;
+font-family: 'Raleway', sans-serif;
+*/
+
+* {
+	-webkit-box-sizing:border-box;
+	 -moz-box-sizing: border-box;
+	 -ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+nav a, button {
+	min-width: 48px;
+	min-height: 48px;
+}
+
+img, embed, object, video {
+	max-width: 100%;
+}
+
+h1 {
+	font-family: 'Raleway', sans-serif;
+}
+
+h2,
+h3,
+label,
+button {
+	font-family: 'Raleway', sans-serif;
+}
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+}
+
+.header {
+	background-color: #49475B;
+	margin: 0;
+	width: 100%;
+	display: grid;
+	grid-template-areas: 
+	"home  heading  signin";
+}
+
+.home-button {
+	text-align: center;
+	grid-area: home;
+	align-self: center;
+	color: #B3B3B3;
+	font-size: 2em;
+}
+
+.heading {
+	text-align: center;
+	padding: .5em 0 .5em 0;
+	grid-area: heading;
+	align-self: center;
+	color: #B3B3B3;
+	font-size: 3em;
+	font-weight: 1000;
+}
+
+.sign-in {
+	text-align: center;
+	grid-area: signin;
+	align-self: center;
+	color: #B3B3B3;
+	font-size: 2em;
+}
+
+.back_button {
+	grid-area: back;
+	color: #B3B3B3;
+	font-size: 2em;
+}
+
+.back {
+	text-align: center;
+	padding-top: 1em;
+}
+
+
+.latest_items {
+	display: inline;
+}
+
+/* Links */
+.footer_link {
+	align-self: center;
+}
+
+.delete_footer_link {
+	align-self: center;
+	grid-area: delete_link;
+}
+
+.edit_footer_link{
+	align-self: center;
+	grid-area: edit_link;
+}
+
+.create_footer_link{
+	align-self: center;
+	grid-area: create_link;
+}
+
+.footer {
+	display: grid;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	height: 50px;
+	background-color: #B3B3B3;
+	color: #49475B;
+	margin-top: -50px;
+}
+
+.footer_category {
+	display: grid;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	height: 50px;
+	background-color: #B3B3B3;
+	color: #49475B;
+	margin-top: -50px;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-areas: 
+	"delete_link  edit_link  create_link";
+}
+
+.item_footer_category {
+	display: grid;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	height: 50px;
+	background-color: #B3B3B3;
+	color: #49475B;
+	margin-top: -50px;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas: 
+	"delete_link  edit_link";
+}
+
+footer {
+	width: 100%;
+}
+
+/*Creating items and categories*/
+
+.new_category {
+	text-align: center;
+	padding: 2em 0 1em 0;
+}
+
+.new_category_form {
+	padding-top: 1em;
+	text-align: center;
+}
+.name_input {
+	width: 50%;
+	height: 2em;
+	margin-left: .5em;
+}
+
+.new_item_form {
+	text-align: center;
+}
+
+.submit {
+	width: 30%;
+	line-height: ;
+	margin-top: 1em;
+	grid-area: submit;
+}
+
+.specific_item {
+	text-align: center;
+	padding-top: 2em;
+}
+
+.item_description {
+	padding-top: 1em;
+}
+
+.name {
+	grid-area: name;
+	text-align: right;
+	padding-right: 2em;
+}
+
+.create_name_input {
+	grid-area: name_input;
+	width: 50%;
+	height: 2em;
+	margin-left: .5em;
+	text-align: left;
+}
+
+.desc {
+	grid-area: desc;
+	text-align: right;
+	margin-top: 1em;
+	padding-right: 2em;
+}
+
+.desc_input {
+	grid-area: desc_input;
+	width: 50%;
+	height: 2em;
+	margin-left: .5em;
+	text-align: left;
+	margin-top: 1em;
+}
+
+.create_form {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas: 
+	"name  name_input"
+	"desc  desc_input";
+}
+
+@media screen and (min-width: 500px) {
+	.categories {
+		grid-area: categories;
+	}
+	.latest_items {
+		grid-area: latest_items;
+	}
+	.flash {
+		grid-area: flash;
+	}
+	.home_page {
+		padding: 1em 2em 1em 2em;
+		display: grid;
+		grid-template-columns: 2fr 3fr;
+		grid-template-areas: 
+		"categories  latest_items";
+	}
+	.create_form {
+		padding-right: 15%;
+	}
+	.name_input {
+		width: 30%;
+		height: 2em;
+		margin-left: .5em;
+	}
+	/*Category Items*/
+	.specific_category {
+		grid-area: specific_category
+	}
+	.category_items {
+		padding: 1em 2em 1em 2em;
+		display: grid;
+		grid-template-columns: 2fr 3fr;
+		grid-template-areas: 
+		"categories  specific_category";
+	}
+}

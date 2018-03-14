@@ -1,0 +1,13 @@
+{% block content %}
+<body>
+	<h2>Categories</h2>
+
+	{% for cat in categories %}
+	<div>
+		<h3><a href="{{url_for('categoryItems', category_id = cat.id)}}">{{cat.name}}</a></h3>
+	</div>
+	
+	{% endfor %}
+</body>
+
+{% endblock %}

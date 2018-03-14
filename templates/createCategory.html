@@ -1,0 +1,17 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class="new_category">
+		<h2>New Category</h2>
+	</div>
+
+	<div class="new_category_form">
+		<form action="#" method="post">
+			<label class="name" for="name">Name: </label>
+			<input class="name_input" type="text" maxlength="100" name="name"></br>
+			<button type="submit" class="submit" type="submit">Create!</button>
+
+		</form>
+	</div>
+
+{% endblock %}

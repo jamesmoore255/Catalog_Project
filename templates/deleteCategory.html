@@ -1,0 +1,18 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="new_category">
+	<h2>Delete</h2>
+</div>
+
+<div class="new_category_form">
+	<h3>Are you sure you want to delete {{category.name}}?</h3>
+	<form action="#" method="post">
+		<button type="submit" class="submit" id="submit">Delete!</button>
+	</form>
+	
+</div>
+<div class="back">
+	<a class="back_button" href="{{url_for('categoryItems', category_id = category.id)}}"><i class="fas fa-hand-point-left"></i></a>
+</div>
+{% endblock %}

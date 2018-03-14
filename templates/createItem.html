@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="new_category">
+	<h2>New Item for {{category.name}}</h2>
+</div>
+
+<div class="new_item_form">
+	<form action="#" method="post">
+		<div class="create_form">
+			<label class="name" for="name">Name: </label>
+			<input class="create_name_input" type="text" maxlength="100" name="name"></br>
+			<label class="desc" for="description">Description: </label>
+			<input class="desc_input" type="text" maxlength="100" name="description"></br>
+		</div>
+		<button type="submit" class="submit" type="submit">Create!</button>
+	</form>
+</div>
+
+<div class="back">
+	<a class="back_button" href="{{url_for('categoryItems', category_id = category.id)}}"><i class="fas fa-hand-point-left"></i></a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="new_category">
+	<h2>Edit {{category.name}}</h2>
+</div>
+
+<div class="new_category_form">
+	<form action="#" method="post">
+		<label class="name" for="name">Name: </label>
+		<input class="name_input" type="text" maxlength="100" name="name"></br>
+		<button type="submit" class="submit" type="submit">Edit!</button>
+	</form>
+</div>
+<div class="back">
+	<a class="back_button" href="{{url_for('categoryItems', category_id = category.id)}}"><i class="fas fa-hand-point-left"></i></a>
+</div>
+{% endblock %}

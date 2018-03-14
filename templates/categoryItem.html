@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="category_items">
+	<div class="categories">
+	{% include 'categories.html'%}
+	</div>
+
+	<div class="specific_category">
+		<div class="category_heading">
+			<h2> {{ category.name }} </h2>
+		</div>
+		{% for item in items %}
+		<div>
+			<h3><a href="{{url_for('specificItem', category_id = category.id, item_id = item.id)}}">{{ item.name }}</a></h3>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+<footer>
+	<div class="footer_category">
+		<h3 class="delete_footer_link"><a href="{{url_for('categoryDelete', category_id = category.id)}}">Delete Category</a></h3>
+		<h3 class="edit_footer_link"><a href="{{url_for('categoryEdit', category_id = category.id)}}">Edit Category</a></h3>
+		<h3 class="create_footer_link"><a href="{{url_for('itemCreate', category_id = category.id)}}">Create Item</a></h3>
+	</div>
+</footer>
+
+{% endblock %}
