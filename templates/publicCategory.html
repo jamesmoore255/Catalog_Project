@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="category_items">
+	<div class="categories">
+	{% include 'categories.html'%}
+	</div>
+
+	<div class="specific_category">
+		<div class="category_heading">
+			<h2> {{ category.name }} </h2>
+		</div>
+		{% for item in items %}
+		<div>
+			<h3><a href="{{url_for('specificItem', category_id = category.id, item_id = item.id)}}">{{ item.name }}</a></h3>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+<footer>
+	<div class="footer">
+		<h3 class="footer_link">This is the Public Category Page.</h3>
+	</div>
+</footer>
+{% endblock %}

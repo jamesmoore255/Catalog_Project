@@ -1,0 +1,26 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="home_page">
+
+	<div class="categories">
+		{% include 'categories.html' %}
+	</div>
+
+	<div class="latest_items">
+		<h2>Latest Items</h2>
+
+		{% for item in items %}
+		
+			<span class="latest_item"><a href="{{url_for('specificItem', category_id = item.category_id, item_id = item.id)}}">{{item.name}}</a></span></br>
+			
+		{% endfor %}
+	</div>
+</div>
+<footer>
+	<div class="footer">
+		<h3 class="footer_link">This is the Public Catalog Page.</h3>
+	</div>
+</footer>
+{% endblock %}
