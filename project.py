@@ -51,10 +51,9 @@ def fbconnect():
         'web']['app_id']
     app_secret = json.loads(
         open('fb_client_secrets.json', 'r').read())['web']['app_secret']
-    url = 'https://graph.facebook.com/oauth/access_token'
-    '?grant_type=fb_exchange_token&client_id=%s&'
-    'client_secret=%s&fb_exchange_token=%s' % (
-        app_id, app_secret, access_token)
+    url = 'https://graph.facebook.com/oauth/access_token?' \
+    'grant_type=fb_exchange_token&client_id=%s&client_secret=%s&' \
+    'fb_exchange_token=%s' % (app_id, app_secret, access_token)
     h = httplib2.Http()
     result = h.request(url, 'GET')[1]
 
@@ -62,8 +61,8 @@ def fbconnect():
     userinfo_url = "https://graph.facebook.com/v2.8/me"
     token = result.split(',')[0].split(':')[1].replace('"', '')
 
-    url = 'https://graph.facebook.com/v2.8/'
-    'me?access_token=%s&fields=name,id,email' % token
+    url = 'https://graph.facebook.com/v2.8/me?' \
+    'access_token=%s&fields=name,id,email' % token
     h = httplib2.Http()
     result = h.request(url, 'GET')[1]
     # print "url sent for API access:%s"% url
@@ -78,8 +77,8 @@ def fbconnect():
     login_session['access_token'] = token
 
     # Get user picture
-    url = 'https://graph.facebook.com/v2.8/me/'
-    'picture?access_token=%s&redirect=0&height=200&width=200' % token
+    url = 'https://graph.facebook.com/v2.8/me/picture?' \
+    'access_token=%s&redirect=0&height=200&width=200' % token
     h = httplib2.Http()
     result = h.request(url, 'GET')[1]
     data = json.loads(result)
@@ -255,7 +254,7 @@ def gdisconnect():
     if result['status'] == '200':
         response = make_response(json.dumps('Successfully disconnected.'), 200)
         response.headers['Content-Type'] = 'application/json'
-        return response
+        return redirect(url_for('catalogHome'))
     else:
         response = make_response(json.dumps
                                  ('Failed to revoke token for given user.',
@@ -267,14 +266,14 @@ def gdisconnect():
 # JSON APIs to view Catalog information.
 @app.route('/catalog/JSON')
 def catalogJSON():
-    catalog = session.query(Catalog).all()
-    return jsonify(catalog=[c.serialize for c in catalog])
+    catalog = session.query(Category).all()
+    return jsonify(Category=[c.serialize for c in catalog])
 
 
 @app.route('/catalog/<int:category_id>/items/JSON')
 def categoryJSON(category_id):
-    catalog = session.query(Catalog).filter_by(id=catalog_id).one()
-    items = session.query(Items).filter_by(catalog_id=catalog_id).all()
+    catalog = session.query(Category).filter_by(id=category_id).one()
+    items = session.query(Items).filter_by(category_id=category_id).all()
     return jsonify(Items=[i.serialize for i in items])
 
 
@@ -305,9 +304,9 @@ def categoryEdit(category_id):
     if 'username' not in login_session:
         return redirect('/login')
     if categoryEdit.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert"
-        "('You are not authorized to edit this category. "
-        "Please create your own category in order to edit.');}"
+        return "<script>function myFunction() {alert" \
+        "('You are not authorized to edit this category. " \
+        "Please create your own category in order to edit.');}" \
         "</script><body onload='myFunction()''>"
     if request.method == 'POST':
         categoryEdit.name = request.form['name']
@@ -322,9 +321,9 @@ def categoryDelete(category_id):
     if 'username' not in login_session:
         return redirect('/login')
     if categoryDelete.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert"
-        "('You are not authorized to delete this catalog. "
-        "Please create your own catalog in order to delete.');}"
+        return "<script>function myFunction() {alert" \
+        "('You are not authorized to delete this catalog. " \
+        "Please create your own catalog in order to delete.');}" \
         "</script><body onload='myFunction()''>"
     if request.method == 'POST':
         session.delete(categoryDelete)
@@ -384,9 +383,9 @@ def itemEdit(category_id, item_id):
     item = session.query(Items).filter_by(category_id=category_id,
                                           id=item_id).first()
     if login_session['user_id'] != item.user_id:
-        return "<script>function myFunction() {alert"
-        "('You are not authorized to edit this item. "
-        "Please create your own catalog in order to edit items.');}"
+        return "<script>function myFunction() {alert" \
+        "('You are not authorized to edit this item. " \
+        "Please create your own catalog in order to edit items.');}" \
         "</script><body onload='myFunction()''>"
     if request.method == 'POST':
         if request.form['name']:
@@ -409,9 +408,9 @@ def itemDelete(category_id, item_id):
     item = session.query(Items).filter_by(category_id=category_id,
                                           id=item_id).first()
     if login_session['user_id'] != item.user_id:
-        return "<script>function myFunction() {alert"
-        "('You are not authorized to delete items in this catalog. "
-        "Please create your own catalog in order to delete items.');}"
+        return "<script>function myFunction() {alert" \
+        "('You are not authorized to delete items in this catalog. " \
+        "Please create your own catalog in order to delete items.');}" \
         "</script><body onload='myFunction()''>"
     if request.method == 'POST':
         session.delete(item)
@@ -426,9 +425,9 @@ def itemCreate(category_id):
         return redirect('/login')
     category = session.query(Category).filter_by(id=category_id).one()
     if login_session['user_id'] != category.user_id:
-        return "<script>function myFunction() {alert"
-        "('You are not authorized to add items. "
-        "Please create your own catalog in order to add items.');}"
+        return "<script>function myFunction() {alert" \
+        "('You are not authorized to add items. " \
+        "Please create your own catalog in order to add items.');}" \
         "</script><body onload='myFunction()''>"
     if request.method == 'POST':
         newItem = Items(name=request.form['name'],

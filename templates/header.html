@@ -3,7 +3,16 @@
 			<i class="fas fa-home"></i>
 		</a>
 		<h1 class="heading">Catalog</h1>
-		<a class="sign-in" href="{{url_for('showLogin')}}">
-			<i class="fas fa-user"></i>
-		</a>
+
+		{% if 'username' not in session %}
+
+			<a class="sign-in" href="{{url_for('showLogin')}}">
+				<i class="fas fa-sign-in-alt"></i>
+			</a>
+		{% else %}
+
+			<a class="sign-in" href="{{url_for('gdisconnect')}}">
+				<i class="fas fa-sign-out-alt"></i>
+			</a>
+		{% endif %}
 </header>
