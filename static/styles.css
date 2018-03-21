@@ -65,7 +65,6 @@ body {
 	align-self: center;
 	color: #B3B3B3;
 	font-size: 3em;
-	font-weight: 1000;
 }
 
 .sign-in {
@@ -184,7 +183,6 @@ footer {
 
 .submit {
 	width: 30%;
-	line-height: ;
 	margin-top: 1em;
 	grid-area: submit;
 }
