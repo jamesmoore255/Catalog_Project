@@ -209,7 +209,6 @@ def gconnect():
     'border-radius: 150px;-webkit-border-radius: 150px;'
     '-moz-border-radius: 150px;"> '
     flash("you are now logged in as %s" % login_session['username'])
-    print "done!"
     return output
 
 # User Helper Functions
@@ -275,12 +274,6 @@ def categoryJSON(category_id):
     catalog = session.query(Category).filter_by(id=category_id).one()
     items = session.query(Items).filter_by(category_id=category_id).all()
     return jsonify(Items=[i.serialize for i in items])
-
-
-@app.route('/catalog/<int:category_id>/items/<int:item_id>/JSON')
-def categoryItemJson(category_id, item_id):
-    item = session.query(Items).filter_by(id=item_id).one()
-    return jsonify(Items=[i.serialize for i in item])
 
 
 # Catalog main page with list of categories and latest items
